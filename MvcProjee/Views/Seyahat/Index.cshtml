@@ -1,0 +1,48 @@
+﻿@using MvcProjee.Models.Entity;
+@model List<Table_Seyahat>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<table id="tbl1" class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Seyahat ID</th>
+            <th>Seyahat Türü</th>
+            <th>Seyahat Nereden</th>
+            <th>Seyahat Nereye</th>
+            <th>Kategori Adı</th>
+            <th>Sil</th>
+            <th>Güncelle</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var syht in Model)
+        {
+            <tr>
+
+                <th>@syht.SeyahatID</th>
+                <td>@syht.SeyahatAdı</td>
+                <td>@syht.Seyahat_Konumu</td>
+                <td>@syht.Seyahat_İl</td>
+                <td>@syht.Table_Kategori.KategoriAd</td>
+                <td>@Html.ActionLink("Sil", "SIL", new { id = syht.SeyahatID }, new { @class = "btn btn-danger", onclick = "return confirm('Silmek İstiyor Musunuz?')" })</td>
+                <td><a href="/Seyahat/SeyahatGetir/@syht.SeyahatID" class="btn btn-success">Güncelle</a></td>
+            </tr>
+        }
+    </tbody>
+
+</table>
+<a href="/Seyahat/YeniSeyahat/" class="btn btn-primary">Yeni Seyahat ekle</a>
+
+<link href="~/Content/DataTables/css/buttons.bootstrap4.css" rel="stylesheet" />
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<link href="~/Content/bootstrap.css" rel="stylesheet" />
+<link href="https://cdn.datatables.net/1.10.15/css/dataTables.bootstrap.min.css" rel="stylesheet" />
+<link href="https://cdn.datatables.net/responsive/2.1.1/css/responsive.bootstrap.min.css" rel="stylesheet" />
+<script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.15/js/dataTables.bootstrap4.min.js "></script>
+<script>
+$('#tbl1').dataTable({});
+</script>

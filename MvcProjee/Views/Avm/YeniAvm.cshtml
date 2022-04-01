@@ -1,0 +1,29 @@
+﻿@model MvcProjee.Models.Entity.Table_AVM
+@{
+    ViewBag.Title = "YeniAvm";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<h2>Yeni Avm Ekleme Sayfası</h2>
+<br />
+<form class="form-group" method="post">
+    <div>
+        <label>Avm Adı</label>
+        <input type="text" class="form-control" name="AvmAdı" required="" />
+        <label>Avm Konum</label>
+        <input type="url" class="form-control" name="AvmKonumu" required="" />
+        <label>Avm İl</label>
+        <input type="text" class="form-control" name="Avmİl" required="" />
+        <label>Avm İlçe</label>
+        <input type="text" class="form-control" name="Avmİlce" required="" />
+        <div style="margin-top:15px">
+            <label>Kategori Adı</label>
+            @Html.DropDownListFor(m => m.Table_Kategori.KategoriID, (List<SelectListItem>)ViewBag.dgr, new { @class = "form-control" })
+        </div>
+
+    </div>
+    <div style="margin-top:15px">
+        <button class="btn btn-info">Avm Ekle</button>
+    </div>
+    
+</form>

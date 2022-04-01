@@ -1,0 +1,38 @@
+﻿@model MvcProjee.Models.Entity.Table_Otel
+@{
+    ViewBag.Title = "OtelGetir";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<h2>Otel Güncelle</h2>
+
+@using (Html.BeginForm("Guncelle", "Otel", FormMethod.Post))
+{
+<div class="form-group">
+    @Html.LabelFor(m => m.OtelID)
+    @Html.TextBoxFor(m => m.OtelID, new { @class = "form-control" })
+    <br />
+    @Html.LabelFor(m => m.OtelAdı)
+    @Html.TextBoxFor(m => m.OtelAdı, new { @class = "form-control" })
+    <br />
+    @Html.LabelFor(m => m.OtelKonumu)
+    @Html.TextBoxFor(m => m.OtelKonumu, new { @class = "form-control" })
+    <br />
+    @Html.LabelFor(m => m.Otel_İl)
+    @Html.TextBoxFor(m => m.Otel_İl, new { @class = "form-control" })
+    <br />
+    @Html.LabelFor(m => m.Otel_İlce)
+    @Html.TextBoxFor(m => m.Otel_İlce, new { @class = "form-control" })
+    <br />
+    @Html.LabelFor(m => m.Kategori_ID)
+    @Html.DropDownListFor(m => m.Table_Kategori.KategoriID, (List<SelectListItem>)ViewBag.dgr, new { @class = "form-control" })
+</div>
+    <div>
+        <button class="btn btn-warning" id="btn1">Otel Güncelle</button>
+    </div>
+    <script>
+        $('#btn1').click(function () {
+            alert('Otel Güncellendi.');
+        });
+    </script>
+}

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="d7c9a9117663493d933b4b8f331e556d" Name="Diagram1">
+        <EntityTypeShape EntityType="GeziModel.sysdiagrams" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="GeziModel.Table_AVM" Width="1.5" PointX="3" PointY="1.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="GeziModel.Table_Kategori" Width="1.5" PointX="0.75" PointY="11" IsExpanded="true" />
+        <EntityTypeShape EntityType="GeziModel.Table_Konser" Width="1.5" PointX="3" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="GeziModel.Table_Otel" Width="1.5" PointX="3" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="GeziModel.Table_Seyahat" Width="1.5" PointX="3" PointY="11.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="GeziModel.Table_Sinema" Width="1.5" PointX="3" PointY="14.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="GeziModel.Table_TIYATRO" Width="1.5" PointX="3" PointY="17.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="GeziModel.TableRestorant" Width="1.5" PointX="3" PointY="20.625" IsExpanded="true" />
+        <AssociationConnector Association="GeziModel.FK_Table_AVM_Table_Kategori" ManuallyRouted="false" />
+        <AssociationConnector Association="GeziModel.FK_Table_Konser_Table_Kategori" ManuallyRouted="false" />
+        <AssociationConnector Association="GeziModel.FK_Table_Otel_Table_Kategori" ManuallyRouted="false" />
+        <AssociationConnector Association="GeziModel.FK_Table_Seyahat_Table_Kategori" ManuallyRouted="false" />
+        <AssociationConnector Association="GeziModel.FK_Table_Sinema_Table_Kategori" ManuallyRouted="false" />
+        <AssociationConnector Association="GeziModel.FK_Table_TIYATRO_Table_Kategori" ManuallyRouted="false" />
+        <AssociationConnector Association="GeziModel.FK_TableRestorant_Table_Kategori" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

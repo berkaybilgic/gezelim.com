@@ -1,0 +1,38 @@
+﻿@model MvcProjee.Models.Entity.TableRestorant
+@{
+    ViewBag.Title = "RestoranGetir";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<h2>Restoran Güncelle</h2>
+
+@using (Html.BeginForm("Guncelle", "Restoran", FormMethod.Post))
+{
+    <div class="form-group">
+        @Html.LabelFor(m => m.RestorantID)
+        @Html.TextBoxFor(m => m.RestorantID, new { @class = "form-control" })
+        <br />
+        @Html.LabelFor(m => m.RestorantAdı)
+        @Html.TextBoxFor(m => m.RestorantAdı, new { @class = "form-control" })
+        <br />
+        @Html.LabelFor(m => m.RestorantKonumu)
+        @Html.TextBoxFor(m => m.RestorantKonumu, new { @class = "form-control" })
+        <br />
+        @Html.LabelFor(m => m.Restorantİl)
+        @Html.TextBoxFor(m => m.Restorantİl, new { @class = "form-control" })
+        <br />
+        @Html.LabelFor(m => m.Restorantİlce)
+        @Html.TextBoxFor(m => m.Restorantİlce, new { @class = "form-control" })
+        <br />
+        @Html.LabelFor(m => m.Kategori_ID)
+        @Html.DropDownListFor(m => m.Table_Kategori.KategoriID, (List<SelectListItem>)ViewBag.dgr, new { @class = "form-control" })
+    </div>
+    <div>
+        <button class="btn btn-warning" id="btn1">Restoran Güncelle</button>
+    </div>
+    <script>
+        $('#btn1').click(function () {
+            alert('Restoran Güncellendi.');
+        });
+    </script>
+}

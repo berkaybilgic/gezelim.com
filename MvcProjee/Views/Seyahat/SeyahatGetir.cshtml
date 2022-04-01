@@ -1,0 +1,35 @@
+﻿@model MvcProjee.Models.Entity.Table_Seyahat
+@{
+    ViewBag.Title = "SeyahatGetir";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<h2>Seyahat Günceller</h2>
+
+@using (Html.BeginForm("Guncelle", "Seyahat", FormMethod.Post))
+{
+    <div class="form-group">
+        @Html.LabelFor(m => m.SeyahatID)
+        @Html.TextBoxFor(m => m.SeyahatID, new { @class = "form-control" })
+        <br />
+        @Html.LabelFor(m => m.SeyahatAdı)
+        @Html.TextBoxFor(m => m.SeyahatAdı, new { @class = "form-control" })
+        <br />
+        <label>Nereden</label>
+        @Html.TextBoxFor(m => m.Seyahat_Konumu, new { @class = "form-control" })
+        <br />
+        <label>Nereye</label>
+        @Html.TextBoxFor(m => m.Seyahat_İl, new { @class = "form-control" })
+        <br />
+        <label>Kategori Adı</label>
+        @Html.DropDownListFor(m => m.Table_Kategori.KategoriID, (List<SelectListItem>)ViewBag.dgr, new { @class = "form-control" })
+    </div>
+    <div>
+        <button class="btn btn-warning" id="btn1">Seyahat Güncelle</button>
+    </div>
+    <script>
+        $('#btn1').click(function () {
+            alert('Seyahat Güncellendi.');
+        });
+    </script>
+}

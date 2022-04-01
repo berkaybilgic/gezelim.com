@@ -1,0 +1,38 @@
+﻿@model MvcProjee.Models.Entity.Table_Sinema
+@{
+    ViewBag.Title = "SinemaEkle";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<h2>Sinema Güncelle</h2>
+
+@using (Html.BeginForm("Guncelle", "Sinema", FormMethod.Post))
+{
+    <div class="form-group">
+        @Html.LabelFor(m => m.SinemaID)
+        @Html.TextBoxFor(m => m.SinemaID, new { @class = "form-control" })
+        <br />
+        @Html.LabelFor(m => m.SinemaAdı)
+        @Html.TextBoxFor(m => m.SinemaAdı, new { @class = "form-control" })
+        <br />
+        @Html.LabelFor(m => m.SinemaKonumu)
+        @Html.TextBoxFor(m => m.SinemaKonumu, new { @class = "form-control" })
+        <br />
+        @Html.LabelFor(m => m.Sinemaİl)
+        @Html.TextBoxFor(m => m.Sinemaİl, new { @class = "form-control" })
+        <br />
+        @Html.LabelFor(m => m.Sinemaİlce)
+        @Html.TextBoxFor(m => m.Sinemaİlce, new { @class = "form-control" })
+        <br />
+        @Html.LabelFor(m => m.Kategori_ID)
+        @Html.DropDownListFor(m => m.Table_Kategori.KategoriID, (List<SelectListItem>)ViewBag.dgr, new { @class = "form-control" })
+    </div>
+    <div>
+        <button class="btn btn-warning" id="btn1">Sinema Güncelle</button>
+    </div>
+    <script>
+        $('#btn1').click(function () {
+            alert('Sinema Güncellendi.');
+        });
+    </script>
+}

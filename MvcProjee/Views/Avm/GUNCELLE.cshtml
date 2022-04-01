@@ -1,0 +1,40 @@
+﻿@model MvcProjee.Models.Entity.Table_AVM
+@{
+    ViewBag.Title = "GUNCELLE";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<h2>Avm Güncelle</h2>
+
+@using (Html.BeginForm("AvmGetir", "Avm", FormMethod.Post))
+{
+    <div class="form-group">
+        @Html.LabelFor(m => m.AvmID)
+        @Html.TextBoxFor(m => m.AvmID, new { @class = "form-control" })
+        <br />
+        @Html.LabelFor(m => m.AvmAdı)
+        @Html.TextBoxFor(m => m.AvmAdı, new { @class = "form-control" })
+        <br />
+        @Html.LabelFor(m => m.AvmKonumu)
+        @Html.TextBoxFor(m => m.AvmKonumu, new { @class = "form-control" })
+        <br />
+        @Html.LabelFor(m => m.Avmİl)
+        @Html.TextBoxFor(m => m.Avmİl, new { @class = "form-control" })
+        <br />
+        @Html.LabelFor(m => m.Avmİlce)
+        @Html.TextBoxFor(m => m.Avmİlce, new { @class = "form-control" })
+        <br />
+        @Html.LabelFor(m => m.Kategori_ID)
+        @Html.DropDownListFor(m => m.Table_Kategori.KategoriID, (List<SelectListItem>)ViewBag.dgr, new { @class = "form-control" })
+
+    </div>
+    <div>
+        <button class="btn btn-warning" id="btn1">AVM Güncelle</button>
+    </div>
+    <script>
+        $('#btn1').click(function () {
+            alert('AVM Güncellendi.');
+        });
+    </script>
+}
+

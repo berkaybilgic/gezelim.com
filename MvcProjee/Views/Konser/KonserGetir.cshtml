@@ -1,0 +1,42 @@
+﻿@model MvcProjee.Models.Entity.Table_Konser
+@{
+    ViewBag.Title = "KonserGetir";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<h2>Konser Güncelle</h2>
+
+@using (Html.BeginForm("Guncelle", "Konser", FormMethod.Post))
+{
+    <div class="form-group">
+        @Html.LabelFor(m => m.KonserID)
+        @Html.TextBoxFor(m => m.KonserID, new { @class = "form-control" })
+        <br />
+        @Html.LabelFor(m => m.KonserAdı)
+        @Html.TextBoxFor(m => m.KonserAdı, new { @class = "form-control" })
+        <br />
+        @Html.LabelFor(m => m.KonserKonumu)
+        @Html.TextBoxFor(m => m.KonserKonumu, new { @class = "form-control" })
+        <br />
+        @Html.LabelFor(m => m.KonserTarihi)
+        @Html.TextBoxFor(m => m.KonserTarihi, new { @class = "form-control" })
+        <br />
+        @Html.LabelFor(m => m.Konserİl)
+        @Html.TextBoxFor(m => m.Konserİl, new { @class = "form-control" })
+        <br />
+        @Html.LabelFor(m => m.Konserİlce)
+        @Html.TextBoxFor(m => m.Konserİlce, new { @class = "form-control" })
+        <br />
+        @Html.LabelFor(m => m.Kategori_ID)
+        @Html.DropDownListFor(m => m.Table_Kategori.KategoriID, (List<SelectListItem>)ViewBag.dgr, new { @class = "form-control" })
+
+    </div>
+    <div>
+        <button class="btn btn-warning" id="btn1">Konseri Güncelle</button>
+    </div>
+    <script>
+        $('#btn1').click(function () {
+            alert('Konser Güncellendi.');
+        });
+    </script>
+}

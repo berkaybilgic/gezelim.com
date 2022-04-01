@@ -1,0 +1,38 @@
+﻿@model MvcProjee.Models.Entity.TableRestorant
+@{
+    ViewBag.Title = "YeniRestoran";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<h2>Restoran Ekle</h2>
+
+<form class="form-group" method="post">
+    <div>
+        <label>Restoran Adı</label>
+        <input type="text" class="form-control" name="RestorantAdı" required="" />
+    </div>
+    <div style="margin-top:15px">
+        <label>Restoran Konum</label>
+        <input type="text" class="form-control" name="RestorantKonumu" required="" />
+    </div>
+    <div style="margin-top:15px">
+        <label>Restoran İl</label>
+        <input type="text" class="form-control" name="Restorantİl" required="" />
+    </div>
+    <div style="margin-top:15px">
+        <label>Restoran İlçe</label>
+        <input type="text" class="form-control" name="Restorantİlce" required="" />
+    </div>
+    <div style="margin-top:15px">
+        <label>Kategori Adı</label>
+        @Html.DropDownListFor(m => m.Table_Kategori.KategoriID, (List<SelectListItem>)ViewBag.dgr, new { @class = "form-control" })
+    </div>
+    <div style="margin-top:15px">
+        <button class="btn btn-info" id="btn1">Restoran Ekle</button>
+    </div>
+    <script>
+        $('#btn1').click(function () {
+            alert('Restoran Eklendi.');
+        });
+    </script>
+</form>

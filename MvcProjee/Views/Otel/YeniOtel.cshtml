@@ -1,0 +1,38 @@
+﻿@model MvcProjee.Models.Entity.Table_Otel
+@{
+    ViewBag.Title = "YeniOtel";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<h2>YeniOtel ekle sayfası</h2>
+
+<form class="form-group" method="post">
+    <div>
+        <label>Otel Adı</label>
+        <input type="text" class="form-control" name="OtelAdı" required="" />
+    </div>
+    <div style="margin-top:15px">
+        <label>Otel Konum</label>
+        <input type="text" class="form-control" name="OtelKonumu" required="" />
+    </div>
+    <div style="margin-top:15px">
+        <label>Otel İl</label>
+        <input type="text" class="form-control" name="Otel_İl" required="" />
+    </div>
+    <div style="margin-top:15px">
+        <label>Otel İlçe</label>
+        <input type="text" class="form-control" name="Otel_İlce" required="" />
+    </div>
+    <div style="margin-top:15px">
+        <label>Kategori Adı</label>
+        @Html.DropDownListFor(m => m.Table_Kategori.KategoriID, (List<SelectListItem>)ViewBag.dgr, new { @class = "form-control" })
+    </div>
+    <div style="margin-top:15px">
+        <button class="btn btn-info" id="btn1">Otel Ekle</button>
+    </div>
+    <script>
+        $('#btn1').click(function () {
+            alert('Otel Eklendi.');
+        });
+    </script>
+</form>

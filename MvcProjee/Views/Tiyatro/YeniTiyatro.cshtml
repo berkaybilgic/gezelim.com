@@ -1,0 +1,38 @@
+﻿@model MvcProjee.Models.Entity.Table_TIYATRO
+@{
+    ViewBag.Title = "YeniTiyatro";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<h2>Tiyatro Ekle</h2>
+
+<form class="form-group" method="post">
+    <div>
+        <label>Tiyatro Adı</label>
+        <input type="text" class="form-control" name="TiyatroAdı" required="" />
+    </div>
+    <div style="margin-top:15px">
+        <label>Tiyatro Konum</label>
+        <input type="text" class="form-control" name="TiyatroKonum" required="" />
+    </div>
+    <div style="margin-top:15px">
+        <label>Tiyatro İl</label>
+        <input type="text" class="form-control" name="Tiyatroİl" required="" />
+    </div>
+    <div style="margin-top:15px">
+        <label>Tiyatro İlçe</label>
+        <input type="text" class="form-control" name="Tiyatroİlce" required="" />
+    </div>
+    <div style="margin-top:15px">
+        <label>Kategori Adı</label>
+        @Html.DropDownListFor(m => m.Table_Kategori.KategoriID, (List<SelectListItem>)ViewBag.dgr, new { @class = "form-control" })
+    </div>
+    <div style="margin-top:15px">
+        <button class="btn btn-info" id="btn1">Tiyatro Ekle</button>
+    </div>
+    <script>
+        $('#btn1').click(function () {
+            alert('Tiyatro Eklendi.');
+        });
+    </script>
+</form>

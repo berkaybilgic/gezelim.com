@@ -1,0 +1,593 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="GeziModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Table_AVM">
+          <Key>
+            <PropertyRef Name="AvmID" />
+          </Key>
+          <Property Name="AvmID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AvmAdı" Type="varchar" MaxLength="50" />
+          <Property Name="AvmKonumu" Type="varchar" MaxLength="50" />
+          <Property Name="Avmİl" Type="varchar" MaxLength="20" />
+          <Property Name="Avmİlce" Type="varchar" MaxLength="20" />
+          <Property Name="Kategori_ID" Type="int" />
+        </EntityType>
+        <EntityType Name="Table_Kategori">
+          <Key>
+            <PropertyRef Name="KategoriID" />
+          </Key>
+          <Property Name="KategoriID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="KategoriAd" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="Table_Konser">
+          <Key>
+            <PropertyRef Name="KonserID" />
+          </Key>
+          <Property Name="KonserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="KonserAdı" Type="varchar" MaxLength="50" />
+          <Property Name="KonserKonumu" Type="varchar" MaxLength="50" />
+          <Property Name="Konserİl" Type="varchar" MaxLength="20" />
+          <Property Name="Konserİlce" Type="varchar" MaxLength="20" />
+          <Property Name="Kategori_ID" Type="int" />
+          <Property Name="KonserTarihi" Type="date" />
+        </EntityType>
+        <EntityType Name="Table_Otel">
+          <Key>
+            <PropertyRef Name="OtelID" />
+          </Key>
+          <Property Name="OtelID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OtelAdı" Type="varchar" MaxLength="50" />
+          <Property Name="OtelKonumu" Type="varchar" MaxLength="50" />
+          <Property Name="Otel_İl" Type="varchar" MaxLength="20" />
+          <Property Name="Otel_İlce" Type="varchar" MaxLength="20" />
+          <Property Name="Kategori_ID" Type="int" />
+        </EntityType>
+        <EntityType Name="Table_Seyahat">
+          <Key>
+            <PropertyRef Name="SeyahatID" />
+          </Key>
+          <Property Name="SeyahatID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SeyahatAdı" Type="varchar" MaxLength="50" />
+          <Property Name="Seyahat_Konumu" Type="varchar" MaxLength="50" />
+          <Property Name="Seyahat_İl" Type="varchar" MaxLength="20" />
+          <Property Name="Kategori_ID" Type="int" />
+        </EntityType>
+        <EntityType Name="Table_Sinema">
+          <Key>
+            <PropertyRef Name="SinemaID" />
+          </Key>
+          <Property Name="SinemaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SinemaAdı" Type="varchar" MaxLength="50" />
+          <Property Name="SinemaKonumu" Type="varchar" MaxLength="50" />
+          <Property Name="Sinemaİl" Type="varchar" MaxLength="20" />
+          <Property Name="Sinemaİlce" Type="varchar" MaxLength="50" />
+          <Property Name="Kategori_ID" Type="int" />
+        </EntityType>
+        <EntityType Name="Table_TIYATRO">
+          <Key>
+            <PropertyRef Name="TiyatroID" />
+          </Key>
+          <Property Name="TiyatroID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TiyatroAdı" Type="varchar" MaxLength="50" />
+          <Property Name="TiyatroKonum" Type="varchar" MaxLength="50" />
+          <Property Name="Tiyatroİl" Type="varchar" MaxLength="20" />
+          <Property Name="Tiyatroİlce" Type="varchar" MaxLength="50" />
+          <Property Name="Kategori_ID" Type="int" />
+        </EntityType>
+        <EntityType Name="TableRestorant">
+          <Key>
+            <PropertyRef Name="RestorantID" />
+          </Key>
+          <Property Name="RestorantID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RestorantAdı" Type="varchar" MaxLength="50" />
+          <Property Name="RestorantKonumu" Type="varchar" MaxLength="50" />
+          <Property Name="Restorantİl" Type="varchar" MaxLength="20" />
+          <Property Name="Restorantİlce" Type="varchar" MaxLength="50" />
+          <Property Name="Kategori_ID" Type="int" />
+        </EntityType>
+        <Association Name="FK_Table_AVM_Table_Kategori">
+          <End Role="Table_Kategori" Type="Self.Table_Kategori" Multiplicity="0..1" />
+          <End Role="Table_AVM" Type="Self.Table_AVM" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Table_Kategori">
+              <PropertyRef Name="KategoriID" />
+            </Principal>
+            <Dependent Role="Table_AVM">
+              <PropertyRef Name="Kategori_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Table_Konser_Table_Kategori">
+          <End Role="Table_Kategori" Type="Self.Table_Kategori" Multiplicity="0..1" />
+          <End Role="Table_Konser" Type="Self.Table_Konser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Table_Kategori">
+              <PropertyRef Name="KategoriID" />
+            </Principal>
+            <Dependent Role="Table_Konser">
+              <PropertyRef Name="Kategori_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Table_Otel_Table_Kategori">
+          <End Role="Table_Kategori" Type="Self.Table_Kategori" Multiplicity="0..1" />
+          <End Role="Table_Otel" Type="Self.Table_Otel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Table_Kategori">
+              <PropertyRef Name="KategoriID" />
+            </Principal>
+            <Dependent Role="Table_Otel">
+              <PropertyRef Name="Kategori_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Table_Seyahat_Table_Kategori">
+          <End Role="Table_Kategori" Type="Self.Table_Kategori" Multiplicity="0..1" />
+          <End Role="Table_Seyahat" Type="Self.Table_Seyahat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Table_Kategori">
+              <PropertyRef Name="KategoriID" />
+            </Principal>
+            <Dependent Role="Table_Seyahat">
+              <PropertyRef Name="Kategori_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Table_Sinema_Table_Kategori">
+          <End Role="Table_Kategori" Type="Self.Table_Kategori" Multiplicity="0..1" />
+          <End Role="Table_Sinema" Type="Self.Table_Sinema" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Table_Kategori">
+              <PropertyRef Name="KategoriID" />
+            </Principal>
+            <Dependent Role="Table_Sinema">
+              <PropertyRef Name="Kategori_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Table_TIYATRO_Table_Kategori">
+          <End Role="Table_Kategori" Type="Self.Table_Kategori" Multiplicity="0..1" />
+          <End Role="Table_TIYATRO" Type="Self.Table_TIYATRO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Table_Kategori">
+              <PropertyRef Name="KategoriID" />
+            </Principal>
+            <Dependent Role="Table_TIYATRO">
+              <PropertyRef Name="Kategori_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TableRestorant_Table_Kategori">
+          <End Role="Table_Kategori" Type="Self.Table_Kategori" Multiplicity="0..1" />
+          <End Role="TableRestorant" Type="Self.TableRestorant" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Table_Kategori">
+              <PropertyRef Name="KategoriID" />
+            </Principal>
+            <Dependent Role="TableRestorant">
+              <PropertyRef Name="Kategori_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="GeziModelStoreContainer">
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Table_AVM" EntityType="Self.Table_AVM" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Table_Kategori" EntityType="Self.Table_Kategori" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Table_Konser" EntityType="Self.Table_Konser" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Table_Otel" EntityType="Self.Table_Otel" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Table_Seyahat" EntityType="Self.Table_Seyahat" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Table_Sinema" EntityType="Self.Table_Sinema" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Table_TIYATRO" EntityType="Self.Table_TIYATRO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TableRestorant" EntityType="Self.TableRestorant" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Table_AVM_Table_Kategori" Association="Self.FK_Table_AVM_Table_Kategori">
+            <End Role="Table_Kategori" EntitySet="Table_Kategori" />
+            <End Role="Table_AVM" EntitySet="Table_AVM" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Table_Konser_Table_Kategori" Association="Self.FK_Table_Konser_Table_Kategori">
+            <End Role="Table_Kategori" EntitySet="Table_Kategori" />
+            <End Role="Table_Konser" EntitySet="Table_Konser" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Table_Otel_Table_Kategori" Association="Self.FK_Table_Otel_Table_Kategori">
+            <End Role="Table_Kategori" EntitySet="Table_Kategori" />
+            <End Role="Table_Otel" EntitySet="Table_Otel" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Table_Seyahat_Table_Kategori" Association="Self.FK_Table_Seyahat_Table_Kategori">
+            <End Role="Table_Kategori" EntitySet="Table_Kategori" />
+            <End Role="Table_Seyahat" EntitySet="Table_Seyahat" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Table_Sinema_Table_Kategori" Association="Self.FK_Table_Sinema_Table_Kategori">
+            <End Role="Table_Kategori" EntitySet="Table_Kategori" />
+            <End Role="Table_Sinema" EntitySet="Table_Sinema" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Table_TIYATRO_Table_Kategori" Association="Self.FK_Table_TIYATRO_Table_Kategori">
+            <End Role="Table_Kategori" EntitySet="Table_Kategori" />
+            <End Role="Table_TIYATRO" EntitySet="Table_TIYATRO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TableRestorant_Table_Kategori" Association="Self.FK_TableRestorant_Table_Kategori">
+            <End Role="Table_Kategori" EntitySet="Table_Kategori" />
+            <End Role="TableRestorant" EntitySet="TableRestorant" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="GeziModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Table_AVM">
+          <Key>
+            <PropertyRef Name="AvmID" />
+          </Key>
+          <Property Name="AvmID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AvmAdı" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="AvmKonumu" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Avmİl" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Avmİlce" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Kategori_ID" Type="Int32" />
+          <NavigationProperty Name="Table_Kategori" Relationship="Self.FK_Table_AVM_Table_Kategori" FromRole="Table_AVM" ToRole="Table_Kategori" />
+        </EntityType>
+        <EntityType Name="Table_Kategori">
+          <Key>
+            <PropertyRef Name="KategoriID" />
+          </Key>
+          <Property Name="KategoriID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="KategoriAd" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Table_AVM" Relationship="Self.FK_Table_AVM_Table_Kategori" FromRole="Table_Kategori" ToRole="Table_AVM" />
+          <NavigationProperty Name="Table_Konser" Relationship="Self.FK_Table_Konser_Table_Kategori" FromRole="Table_Kategori" ToRole="Table_Konser" />
+          <NavigationProperty Name="Table_Otel" Relationship="Self.FK_Table_Otel_Table_Kategori" FromRole="Table_Kategori" ToRole="Table_Otel" />
+          <NavigationProperty Name="Table_Seyahat" Relationship="Self.FK_Table_Seyahat_Table_Kategori" FromRole="Table_Kategori" ToRole="Table_Seyahat" />
+          <NavigationProperty Name="Table_Sinema" Relationship="Self.FK_Table_Sinema_Table_Kategori" FromRole="Table_Kategori" ToRole="Table_Sinema" />
+          <NavigationProperty Name="Table_TIYATRO" Relationship="Self.FK_Table_TIYATRO_Table_Kategori" FromRole="Table_Kategori" ToRole="Table_TIYATRO" />
+          <NavigationProperty Name="TableRestorant" Relationship="Self.FK_TableRestorant_Table_Kategori" FromRole="Table_Kategori" ToRole="TableRestorant" />
+        </EntityType>
+        <EntityType Name="Table_Konser">
+          <Key>
+            <PropertyRef Name="KonserID" />
+          </Key>
+          <Property Name="KonserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="KonserAdı" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="KonserKonumu" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Konserİl" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Konserİlce" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Kategori_ID" Type="Int32" />
+          <Property Name="KonserTarihi" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Table_Kategori" Relationship="Self.FK_Table_Konser_Table_Kategori" FromRole="Table_Konser" ToRole="Table_Kategori" />
+        </EntityType>
+        <EntityType Name="Table_Otel">
+          <Key>
+            <PropertyRef Name="OtelID" />
+          </Key>
+          <Property Name="OtelID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OtelAdı" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="OtelKonumu" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Otel_İl" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Otel_İlce" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Kategori_ID" Type="Int32" />
+          <NavigationProperty Name="Table_Kategori" Relationship="Self.FK_Table_Otel_Table_Kategori" FromRole="Table_Otel" ToRole="Table_Kategori" />
+        </EntityType>
+        <EntityType Name="Table_Seyahat">
+          <Key>
+            <PropertyRef Name="SeyahatID" />
+          </Key>
+          <Property Name="SeyahatID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SeyahatAdı" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Seyahat_Konumu" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Seyahat_İl" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Kategori_ID" Type="Int32" />
+          <NavigationProperty Name="Table_Kategori" Relationship="Self.FK_Table_Seyahat_Table_Kategori" FromRole="Table_Seyahat" ToRole="Table_Kategori" />
+        </EntityType>
+        <EntityType Name="Table_Sinema">
+          <Key>
+            <PropertyRef Name="SinemaID" />
+          </Key>
+          <Property Name="SinemaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SinemaAdı" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SinemaKonumu" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Sinemaİl" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Sinemaİlce" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Kategori_ID" Type="Int32" />
+          <NavigationProperty Name="Table_Kategori" Relationship="Self.FK_Table_Sinema_Table_Kategori" FromRole="Table_Sinema" ToRole="Table_Kategori" />
+        </EntityType>
+        <EntityType Name="Table_TIYATRO">
+          <Key>
+            <PropertyRef Name="TiyatroID" />
+          </Key>
+          <Property Name="TiyatroID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TiyatroAdı" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TiyatroKonum" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Tiyatroİl" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Tiyatroİlce" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Kategori_ID" Type="Int32" />
+          <NavigationProperty Name="Table_Kategori" Relationship="Self.FK_Table_TIYATRO_Table_Kategori" FromRole="Table_TIYATRO" ToRole="Table_Kategori" />
+        </EntityType>
+        <EntityType Name="TableRestorant">
+          <Key>
+            <PropertyRef Name="RestorantID" />
+          </Key>
+          <Property Name="RestorantID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RestorantAdı" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="RestorantKonumu" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Restorantİl" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Restorantİlce" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Kategori_ID" Type="Int32" />
+          <NavigationProperty Name="Table_Kategori" Relationship="Self.FK_TableRestorant_Table_Kategori" FromRole="TableRestorant" ToRole="Table_Kategori" />
+        </EntityType>
+        <Association Name="FK_Table_AVM_Table_Kategori">
+          <End Role="Table_Kategori" Type="Self.Table_Kategori" Multiplicity="0..1" />
+          <End Role="Table_AVM" Type="Self.Table_AVM" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Table_Kategori">
+              <PropertyRef Name="KategoriID" />
+            </Principal>
+            <Dependent Role="Table_AVM">
+              <PropertyRef Name="Kategori_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Table_Konser_Table_Kategori">
+          <End Role="Table_Kategori" Type="Self.Table_Kategori" Multiplicity="0..1" />
+          <End Role="Table_Konser" Type="Self.Table_Konser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Table_Kategori">
+              <PropertyRef Name="KategoriID" />
+            </Principal>
+            <Dependent Role="Table_Konser">
+              <PropertyRef Name="Kategori_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Table_Otel_Table_Kategori">
+          <End Role="Table_Kategori" Type="Self.Table_Kategori" Multiplicity="0..1" />
+          <End Role="Table_Otel" Type="Self.Table_Otel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Table_Kategori">
+              <PropertyRef Name="KategoriID" />
+            </Principal>
+            <Dependent Role="Table_Otel">
+              <PropertyRef Name="Kategori_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Table_Seyahat_Table_Kategori">
+          <End Role="Table_Kategori" Type="Self.Table_Kategori" Multiplicity="0..1" />
+          <End Role="Table_Seyahat" Type="Self.Table_Seyahat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Table_Kategori">
+              <PropertyRef Name="KategoriID" />
+            </Principal>
+            <Dependent Role="Table_Seyahat">
+              <PropertyRef Name="Kategori_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Table_Sinema_Table_Kategori">
+          <End Role="Table_Kategori" Type="Self.Table_Kategori" Multiplicity="0..1" />
+          <End Role="Table_Sinema" Type="Self.Table_Sinema" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Table_Kategori">
+              <PropertyRef Name="KategoriID" />
+            </Principal>
+            <Dependent Role="Table_Sinema">
+              <PropertyRef Name="Kategori_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Table_TIYATRO_Table_Kategori">
+          <End Role="Table_Kategori" Type="Self.Table_Kategori" Multiplicity="0..1" />
+          <End Role="Table_TIYATRO" Type="Self.Table_TIYATRO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Table_Kategori">
+              <PropertyRef Name="KategoriID" />
+            </Principal>
+            <Dependent Role="Table_TIYATRO">
+              <PropertyRef Name="Kategori_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TableRestorant_Table_Kategori">
+          <End Role="Table_Kategori" Type="Self.Table_Kategori" Multiplicity="0..1" />
+          <End Role="TableRestorant" Type="Self.TableRestorant" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Table_Kategori">
+              <PropertyRef Name="KategoriID" />
+            </Principal>
+            <Dependent Role="TableRestorant">
+              <PropertyRef Name="Kategori_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="GeziEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="Table_AVM" EntityType="Self.Table_AVM" />
+          <EntitySet Name="Table_Kategori" EntityType="Self.Table_Kategori" />
+          <EntitySet Name="Table_Konser" EntityType="Self.Table_Konser" />
+          <EntitySet Name="Table_Otel" EntityType="Self.Table_Otel" />
+          <EntitySet Name="Table_Seyahat" EntityType="Self.Table_Seyahat" />
+          <EntitySet Name="Table_Sinema" EntityType="Self.Table_Sinema" />
+          <EntitySet Name="Table_TIYATRO" EntityType="Self.Table_TIYATRO" />
+          <EntitySet Name="TableRestorant" EntityType="Self.TableRestorant" />
+          <AssociationSet Name="FK_Table_AVM_Table_Kategori" Association="Self.FK_Table_AVM_Table_Kategori">
+            <End Role="Table_Kategori" EntitySet="Table_Kategori" />
+            <End Role="Table_AVM" EntitySet="Table_AVM" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Table_Konser_Table_Kategori" Association="Self.FK_Table_Konser_Table_Kategori">
+            <End Role="Table_Kategori" EntitySet="Table_Kategori" />
+            <End Role="Table_Konser" EntitySet="Table_Konser" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Table_Otel_Table_Kategori" Association="Self.FK_Table_Otel_Table_Kategori">
+            <End Role="Table_Kategori" EntitySet="Table_Kategori" />
+            <End Role="Table_Otel" EntitySet="Table_Otel" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Table_Seyahat_Table_Kategori" Association="Self.FK_Table_Seyahat_Table_Kategori">
+            <End Role="Table_Kategori" EntitySet="Table_Kategori" />
+            <End Role="Table_Seyahat" EntitySet="Table_Seyahat" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Table_Sinema_Table_Kategori" Association="Self.FK_Table_Sinema_Table_Kategori">
+            <End Role="Table_Kategori" EntitySet="Table_Kategori" />
+            <End Role="Table_Sinema" EntitySet="Table_Sinema" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Table_TIYATRO_Table_Kategori" Association="Self.FK_Table_TIYATRO_Table_Kategori">
+            <End Role="Table_Kategori" EntitySet="Table_Kategori" />
+            <End Role="Table_TIYATRO" EntitySet="Table_TIYATRO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TableRestorant_Table_Kategori" Association="Self.FK_TableRestorant_Table_Kategori">
+            <End Role="Table_Kategori" EntitySet="Table_Kategori" />
+            <End Role="TableRestorant" EntitySet="TableRestorant" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="GeziModelStoreContainer" CdmEntityContainer="GeziEntities">
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="GeziModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Table_AVM">
+            <EntityTypeMapping TypeName="GeziModel.Table_AVM">
+              <MappingFragment StoreEntitySet="Table_AVM">
+                <ScalarProperty Name="AvmID" ColumnName="AvmID" />
+                <ScalarProperty Name="AvmAdı" ColumnName="AvmAdı" />
+                <ScalarProperty Name="AvmKonumu" ColumnName="AvmKonumu" />
+                <ScalarProperty Name="Avmİl" ColumnName="Avmİl" />
+                <ScalarProperty Name="Avmİlce" ColumnName="Avmİlce" />
+                <ScalarProperty Name="Kategori_ID" ColumnName="Kategori_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Table_Kategori">
+            <EntityTypeMapping TypeName="GeziModel.Table_Kategori">
+              <MappingFragment StoreEntitySet="Table_Kategori">
+                <ScalarProperty Name="KategoriID" ColumnName="KategoriID" />
+                <ScalarProperty Name="KategoriAd" ColumnName="KategoriAd" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Table_Konser">
+            <EntityTypeMapping TypeName="GeziModel.Table_Konser">
+              <MappingFragment StoreEntitySet="Table_Konser">
+                <ScalarProperty Name="KonserID" ColumnName="KonserID" />
+                <ScalarProperty Name="KonserAdı" ColumnName="KonserAdı" />
+                <ScalarProperty Name="KonserKonumu" ColumnName="KonserKonumu" />
+                <ScalarProperty Name="Konserİl" ColumnName="Konserİl" />
+                <ScalarProperty Name="Konserİlce" ColumnName="Konserİlce" />
+                <ScalarProperty Name="Kategori_ID" ColumnName="Kategori_ID" />
+                <ScalarProperty Name="KonserTarihi" ColumnName="KonserTarihi" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Table_Otel">
+            <EntityTypeMapping TypeName="GeziModel.Table_Otel">
+              <MappingFragment StoreEntitySet="Table_Otel">
+                <ScalarProperty Name="OtelID" ColumnName="OtelID" />
+                <ScalarProperty Name="OtelAdı" ColumnName="OtelAdı" />
+                <ScalarProperty Name="OtelKonumu" ColumnName="OtelKonumu" />
+                <ScalarProperty Name="Otel_İl" ColumnName="Otel_İl" />
+                <ScalarProperty Name="Otel_İlce" ColumnName="Otel_İlce" />
+                <ScalarProperty Name="Kategori_ID" ColumnName="Kategori_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Table_Seyahat">
+            <EntityTypeMapping TypeName="GeziModel.Table_Seyahat">
+              <MappingFragment StoreEntitySet="Table_Seyahat">
+                <ScalarProperty Name="SeyahatID" ColumnName="SeyahatID" />
+                <ScalarProperty Name="SeyahatAdı" ColumnName="SeyahatAdı" />
+                <ScalarProperty Name="Seyahat_Konumu" ColumnName="Seyahat_Konumu" />
+                <ScalarProperty Name="Seyahat_İl" ColumnName="Seyahat_İl" />
+                <ScalarProperty Name="Kategori_ID" ColumnName="Kategori_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Table_Sinema">
+            <EntityTypeMapping TypeName="GeziModel.Table_Sinema">
+              <MappingFragment StoreEntitySet="Table_Sinema">
+                <ScalarProperty Name="SinemaID" ColumnName="SinemaID" />
+                <ScalarProperty Name="SinemaAdı" ColumnName="SinemaAdı" />
+                <ScalarProperty Name="SinemaKonumu" ColumnName="SinemaKonumu" />
+                <ScalarProperty Name="Sinemaİl" ColumnName="Sinemaİl" />
+                <ScalarProperty Name="Sinemaİlce" ColumnName="Sinemaİlce" />
+                <ScalarProperty Name="Kategori_ID" ColumnName="Kategori_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Table_TIYATRO">
+            <EntityTypeMapping TypeName="GeziModel.Table_TIYATRO">
+              <MappingFragment StoreEntitySet="Table_TIYATRO">
+                <ScalarProperty Name="TiyatroID" ColumnName="TiyatroID" />
+                <ScalarProperty Name="TiyatroAdı" ColumnName="TiyatroAdı" />
+                <ScalarProperty Name="TiyatroKonum" ColumnName="TiyatroKonum" />
+                <ScalarProperty Name="Tiyatroİl" ColumnName="Tiyatroİl" />
+                <ScalarProperty Name="Tiyatroİlce" ColumnName="Tiyatroİlce" />
+                <ScalarProperty Name="Kategori_ID" ColumnName="Kategori_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TableRestorant">
+            <EntityTypeMapping TypeName="GeziModel.TableRestorant">
+              <MappingFragment StoreEntitySet="TableRestorant">
+                <ScalarProperty Name="RestorantID" ColumnName="RestorantID" />
+                <ScalarProperty Name="RestorantAdı" ColumnName="RestorantAdı" />
+                <ScalarProperty Name="RestorantKonumu" ColumnName="RestorantKonumu" />
+                <ScalarProperty Name="Restorantİl" ColumnName="Restorantİl" />
+                <ScalarProperty Name="Restorantİlce" ColumnName="Restorantİlce" />
+                <ScalarProperty Name="Kategori_ID" ColumnName="Kategori_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

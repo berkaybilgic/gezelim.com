@@ -1,0 +1,38 @@
+﻿@model MvcProjee.Models.Entity.Table_Sinema
+@{
+    ViewBag.Title = "YeniSinema";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<h2>Sinema Salonu Ekle</h2>
+
+<form class="form-group" method="post">
+    <div>
+        <label>Sinema Adı</label>
+        <input type="text" class="form-control" name="SinemaAdı" required="" />
+    </div>
+    <div style="margin-top:15px">
+        <label>Sinema Konum</label>
+        <input type="url" class="form-control" name="SinemaKonumu" />
+    </div>
+    <div style="margin-top:15px">
+        <label>Sinema İl</label>
+        <input type="text" class="form-control" name="Sinemaİl" required="" />
+    </div>
+    <div style="margin-top:15px">
+        <label>Sinema İlçe</label>
+        <input type="text" class="form-control" name="Sinemaİlce" required="" />
+    </div>
+    <div style="margin-top:15px">
+        <label>Kategori Adı</label>
+        @Html.DropDownListFor(m => m.Table_Kategori.KategoriID, (List<SelectListItem>)ViewBag.dgr, new { @class = "form-control" })
+    </div>
+    <div style="margin-top:15px">
+        <button class="btn btn-info" id="btn1">Sinema Salonu Ekle</button>
+    </div>
+    <script>
+        $('#btn1').click(function () {
+            alert('Sinema Eklendi.');
+        });
+    </script>
+</form>
